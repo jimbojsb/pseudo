@@ -15,7 +15,6 @@ class PdoTest extends PHPUnit_Framework_TestCase
 
     public function testQueryReturnsMockedResults()
     {
-        $this->markTestIncomplete();
         $p = new Pseudo\Pdo();
         $expectedRows = new Pseudo\Result();
         $expectedRows->addRow(
@@ -26,6 +25,6 @@ class PdoTest extends PHPUnit_Framework_TestCase
         );
         $p->mock("SELECT * FROM test WHERE foo='bar'", $expectedRows);
         $result = $p->query("SELECT * FROM test WHERE foo='bar'");
-        $this->assertEquals($expectedRows->getRows(), $result->fetchAll());
+        $this->assertEquals($expectedRows->getRows(), $result->fetchAll(PDO::FETCH_ASSOC));
     }
 }

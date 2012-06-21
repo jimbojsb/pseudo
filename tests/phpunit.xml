@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
 <phpunit bootstrap="bootstrap.php">
+    <php>
+        <ini name="error_reporting" value="E_ALL & ~(E_NOTICE | E_DEPRECATED | E_STRICT)"/>
+    </php>
     <testsuite>
         <directory suffix="Test.php">.</directory>
     </testsuite>

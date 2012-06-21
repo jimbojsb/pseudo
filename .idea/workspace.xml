@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f81b75af-20ed-4d32-976c-5782e43149df" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.travis.yml" afterPath="$PROJECT_DIR$/.travis.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/PdoTest.php" afterPath="$PROJECT_DIR$/tests/PdoTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/phpunit.xml" afterPath="$PROJECT_DIR$/tests/phpunit.xml" />
     </list>
     <ignored path="pseudo.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -45,7 +46,7 @@
       <file leaf-file-name="ResultCollection.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Pseudo/ResultCollection.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="0" selection-start="420" selection-end="420" vertical-scroll-proportion="-9.761905">
+            <state line="22" column="0" selection-start="420" selection-end="420" vertical-scroll-proportion="-12.571428">
               <folding />
             </state>
           </provider>
@@ -54,7 +55,16 @@
       <file leaf-file-name="PdoTest.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/PdoTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="59" selection-start="349" selection-end="349" vertical-scroll-proportion="-5.714286">
+            <state line="28" column="5" selection-start="906" selection-end="906" vertical-scroll-proportion="-16.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="phpunit.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/tests/phpunit.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3" column="91" selection-start="159" selection-end="159" vertical-scroll-proportion="0.044226043">
               <folding />
             </state>
           </provider>
@@ -64,15 +74,6 @@
         <entry file="file://$PROJECT_DIR$/tests/PdoStatementTest.php">
           <provider selected="true" editor-type-id="text-editor">
             <state line="16" column="10" selection-start="392" selection-end="392" vertical-scroll-proportion="-9.142858">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".travis.yml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.travis.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="1" selection-start="38" selection-end="38" vertical-scroll-proportion="0.088452086">
               <folding />
             </state>
           </provider>
@@ -107,12 +108,12 @@
         <option value="$PROJECT_DIR$/src/Pseudo/Result.php" />
         <option value="$PROJECT_DIR$/src/Pseudo/ResultCollection.php" />
         <option value="$PROJECT_DIR$/src/Pseudo/Pdo.php" />
-        <option value="$PROJECT_DIR$/tests/PdoTest.php" />
-        <option value="$PROJECT_DIR$/tests/phpunit.xml" />
         <option value="$PROJECT_DIR$/src/Pseudo/PdoStatement.php" />
         <option value="$PROJECT_DIR$/tests/PdoStatementTest.php" />
         <option value="$PROJECT_DIR$/travis.yml" />
         <option value="$PROJECT_DIR$/.travis.yml" />
+        <option value="$PROJECT_DIR$/tests/PdoTest.php" />
+        <option value="$PROJECT_DIR$/tests/phpunit.xml" />
       </list>
     </option>
   </component>
@@ -451,30 +452,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Pseudo/ResultCollection.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="420" selection-end="420" vertical-scroll-proportion="-9.761905">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/phpunit.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="38" selection-start="112" selection-end="112" vertical-scroll-proportion="0.07531381">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Pseudo/Result.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="12" column="32" selection-start="226" selection-end="226" vertical-scroll-proportion="-6.857143">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/PdoTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="59" selection-start="349" selection-end="349" vertical-scroll-proportion="-5.714286">
           <folding />
         </state>
       </provider>
@@ -486,6 +466,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.travis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="1" selection-start="38" selection-end="38" vertical-scroll-proportion="0.088452086">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tests/PdoStatementTest.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="16" column="10" selection-start="392" selection-end="392" vertical-scroll-proportion="-9.142858">
@@ -493,9 +480,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.travis.yml">
+    <entry file="file://$PROJECT_DIR$/src/Pseudo/ResultCollection.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="1" selection-start="38" selection-end="38" vertical-scroll-proportion="0.088452086">
+        <state line="22" column="0" selection-start="420" selection-end="420" vertical-scroll-proportion="-12.571428">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/PdoTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="5" selection-start="906" selection-end="906" vertical-scroll-proportion="-16.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/phpunit.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="91" selection-start="159" selection-end="159" vertical-scroll-proportion="0.044226043">
           <folding />
         </state>
       </provider>
