@@ -27,4 +27,43 @@ class PdoTest extends PHPUnit_Framework_TestCase
         $result = $p->query("SELECT * FROM test WHERE foo='bar'");
         $this->assertEquals($expectedRows->getRows(), $result->fetchAll(PDO::FETCH_ASSOC));
     }
+
+    public function testLastInsertId()
+    {
+        $sql = "INSERT INTO foo VALUES ('1')";
+        $r = new Pseudo\Result();
+        $p = new Pseudo\Pdo();
+        $p->mock($sql, $r);
+        $p->query($sql);
+        $this->assertEquals(0, $p->lastInsertId());
+        $r->setInsertId(1);
+        $p->query($sql);
+        $this->assertEquals(1, $p->lastInsertId());
+    }
+
+    public function testErrorInfo()
+    {
+        $sql = "SELECT 1";
+        $r = new Pseudo\Result();
+        $p = new Pseudo\Pdo();
+        $p->mock($sql, $r);
+        $p->query($sql);
+        $this->assertEquals(0, $p->lastInsertId());
+        $r->setInsertId(1);
+        $p->query($sql);
+        $this->assertEquals(1, $p->lastInsertId());
+    }
+
+    public function testErrorCode()
+    {
+        $sql = "SELECT 1";
+        $r = new Pseudo\Result();
+        $p = new Pseudo\Pdo();
+        $p->mock($sql, $r);
+        $p->query($sql);
+        $this->assertEquals(0, $p->lastInsertId());
+        $r->setInsertId(1);
+        $p->query($sql);
+        $this->assertEquals(1, $p->lastInsertId());
+    }
 }

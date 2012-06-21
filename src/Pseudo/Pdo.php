@@ -4,40 +4,41 @@ namespace Pseudo;
 class Pdo extends \PDO
 {
     protected $mockedQueries;
+    protected $queryLog = [];
 
     public function prepare($statement, array $driver_options = null)
     {
-        parent::prepare($statement, $driver_options);
+        // not yet implemented
     }
 
     public function beginTransaction()
     {
-        parent::beginTransaction();
+        // not yet implemented
     }
 
     public function commit()
     {
-        parent::commit();
+        // not yet implemented
     }
 
     public function rollBack()
     {
-        parent::rollBack();
+        // not yet implemented
     }
 
     public function inTransaction()
     {
-        parent::inTransaction();
+        // not yet implemented
     }
 
     public function setAttribute($attribute, $value)
     {
-        parent::setAttribute($attribute, $value);
+        // not yet implemented
     }
 
     public function exec($statement)
     {
-        parent::exec($statement);
+        // not yet implemented
     }
 
     public function query($statement)
@@ -45,6 +46,7 @@ class Pdo extends \PDO
         if ($this->mockedQueries->exists($statement)) {
             $result = $this->mockedQueries->getResult($statement);
             if ($result) {
+                $this->queryLog[] = $statement;
                 $statement = new PdoStatement();
                 $statement->setResult($result);
                 return $statement;
@@ -56,34 +58,42 @@ class Pdo extends \PDO
 
     public function lastInsertId($name = null)
     {
-        parent::lastInsertId($name);
+        $result = $this->getLastResult();
+        if ($result) {
+            return $result->getInsertId();
+        }
+        return 0;
+    }
+
+    /**
+     * @return result
+     */
+    private function getLastResult()
+    {
+        $lastQuery = $this->queryLog[count($this->queryLog) - 1];
+        $result = $this->mockedQueries->getResult($lastQuery);
+        return $result;
     }
 
     public function errorCode()
     {
-        parent::errorCode();
+        // not yet implemented
     }
 
     public function errorInfo()
     {
-        parent::errorInfo();
+        // not yet implemented
     }
 
     public function getAttribute($attribute)
     {
-        parent::getAttribute($attribute);
+        // not yet implemented
     }
 
     public function quote($string, $parameter_type = PDO::PARAM_STR)
     {
-        parent::quote($string, $parameter_type);
+        // not yet implemented
     }
-
-    public static function getAvailableDrivers()
-    {
-        parent::getAvailableDrivers();
-    }
-
 
     public function __construct()
     {
@@ -103,9 +113,5 @@ class Pdo extends \PDO
     public function getMockedQueries()
     {
         return $this->mockedQueries;
-    }
-
-    public function __call($name, $args)
-    {
     }
 }

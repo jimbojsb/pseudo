@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f81b75af-20ed-4d32-976c-5782e43149df" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pseudo/Pdo.php" afterPath="$PROJECT_DIR$/src/Pseudo/Pdo.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pseudo/Result.php" afterPath="$PROJECT_DIR$/src/Pseudo/Result.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/PdoTest.php" afterPath="$PROJECT_DIR$/tests/PdoTest.php" />
     </list>
     <ignored path="pseudo.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,16 +29,16 @@
       <file leaf-file-name="Pdo.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Pseudo/Pdo.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="5" selection-start="586" selection-end="586" vertical-scroll-proportion="0.0">
+            <state line="10" column="30" selection-start="217" selection-end="217" vertical-scroll-proportion="-5.714286">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PdoStatement.php" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="PdoStatement.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Pseudo/PdoStatement.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="87" column="51" selection-start="2547" selection-end="2547" vertical-scroll-proportion="0.0">
+            <state line="87" column="51" selection-start="2547" selection-end="2547" vertical-scroll-proportion="0.77175283">
               <folding />
             </state>
           </provider>
@@ -46,7 +47,7 @@
       <file leaf-file-name="ResultCollection.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Pseudo/ResultCollection.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="22" column="0" selection-start="420" selection-end="420" vertical-scroll-proportion="0.0">
+            <state line="22" column="11" selection-start="431" selection-end="431" vertical-scroll-proportion="-12.571428">
               <folding />
             </state>
           </provider>
@@ -55,34 +56,7 @@
       <file leaf-file-name="PdoTest.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/PdoTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="5" selection-start="906" selection-end="906" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="phpunit.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/phpunit.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="54" selection-start="122" selection-end="122" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="README.md" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="24" selection-start="86" selection-end="92" vertical-scroll-proportion="0.088452086">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PdoStatementTest.php" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/tests/PdoStatementTest.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="10" selection-start="392" selection-end="392" vertical-scroll-proportion="0.0">
+            <state line="58" column="24" selection-start="1699" selection-end="1699" vertical-scroll-proportion="-28.619047">
               <folding />
             </state>
           </provider>
@@ -91,7 +65,16 @@
       <file leaf-file-name="Result.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Pseudo/Result.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="32" selection-start="226" selection-end="226" vertical-scroll-proportion="0.0">
+            <state line="7" column="20" selection-start="103" selection-end="103" vertical-scroll-proportion="-4.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PdoStatementTest.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/PdoStatementTest.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="10" selection-start="392" selection-end="392" vertical-scroll-proportion="-0.5714286">
               <folding />
             </state>
           </provider>
@@ -114,16 +97,16 @@
         <option value="$PROJECT_DIR$/src/Pseudo/Recorder.php" />
         <option value="$PROJECT_DIR$/tests/bootstrap.php" />
         <option value="$PROJECT_DIR$/src/autoload.php" />
-        <option value="$PROJECT_DIR$/src/Pseudo/Result.php" />
         <option value="$PROJECT_DIR$/src/Pseudo/ResultCollection.php" />
-        <option value="$PROJECT_DIR$/src/Pseudo/Pdo.php" />
         <option value="$PROJECT_DIR$/src/Pseudo/PdoStatement.php" />
         <option value="$PROJECT_DIR$/tests/PdoStatementTest.php" />
         <option value="$PROJECT_DIR$/travis.yml" />
         <option value="$PROJECT_DIR$/.travis.yml" />
-        <option value="$PROJECT_DIR$/tests/PdoTest.php" />
         <option value="$PROJECT_DIR$/tests/phpunit.xml" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/Pseudo/Result.php" />
+        <option value="$PROJECT_DIR$/tests/PdoTest.php" />
+        <option value="$PROJECT_DIR$/src/Pseudo/Pdo.php" />
       </list>
     </option>
   </component>
@@ -407,14 +390,7 @@
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/src/Pseudo/Pdo.php</url>
-          <line>44</line>
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/bin/makephar.php">
@@ -452,56 +428,58 @@
         <state line="6" column="1" selection-start="38" selection-end="38" vertical-scroll-proportion="0.088452086" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Pseudo/Pdo.php">
+    <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="5" selection-start="586" selection-end="586" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Pseudo/PdoStatement.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="87" column="51" selection-start="2547" selection-end="2547" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Pseudo/ResultCollection.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="0" selection-start="420" selection-end="420" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/tests/PdoTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="5" selection-start="906" selection-end="906" vertical-scroll-proportion="0.0">
+        <state line="6" column="51" selection-start="119" selection-end="119" vertical-scroll-proportion="0.088452086">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/phpunit.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="54" selection-start="122" selection-end="122" vertical-scroll-proportion="0.0" />
+        <state line="3" column="54" selection-start="122" selection-end="122" vertical-scroll-proportion="0.044226043">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/PdoStatementTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="10" selection-start="392" selection-end="392" vertical-scroll-proportion="0.0">
+        <state line="16" column="10" selection-start="392" selection-end="392" vertical-scroll-proportion="-0.5714286">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Pseudo/ResultCollection.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="11" selection-start="431" selection-end="431" vertical-scroll-proportion="-12.571428">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/PdoTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="24" selection-start="1699" selection-end="1699" vertical-scroll-proportion="-28.619047">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Pseudo/Pdo.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="30" selection-start="217" selection-end="217" vertical-scroll-proportion="-5.714286">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Pseudo/Result.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="32" selection-start="226" selection-end="226" vertical-scroll-proportion="0.0">
+        <state line="7" column="20" selection-start="103" selection-end="103" vertical-scroll-proportion="-4.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
+    <entry file="file://$PROJECT_DIR$/src/Pseudo/PdoStatement.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="24" selection-start="86" selection-end="92" vertical-scroll-proportion="0.088452086">
+        <state line="87" column="51" selection-start="2547" selection-end="2547" vertical-scroll-proportion="0.77175283">
           <folding />
         </state>
       </provider>
