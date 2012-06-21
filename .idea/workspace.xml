@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f81b75af-20ed-4d32-976c-5782e43149df" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Pseudo/Result.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Pseudo/ResultCollection.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/autoload.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/php-sql-parser.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/PdoStatementTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/PdoTest.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/bootstrap.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tests/phpunit.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/pseudo.iml" afterPath="$PROJECT_DIR$/.idea/pseudo.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/travis.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pseudo/Pdo.php" afterPath="$PROJECT_DIR$/src/Pseudo/Pdo.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pseudo/PdoException.php" afterPath="$PROJECT_DIR$/src/Pseudo/PdoException.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pseudo/PdoStatement.php" afterPath="$PROJECT_DIR$/src/Pseudo/PdoStatement.php" />
     </list>
     <ignored path="pseudo.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -73,10 +61,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PdoStatementTest.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="PdoStatementTest.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/PdoStatementTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="10" selection-start="392" selection-end="392" vertical-scroll-proportion="0.001261034">
+            <state line="16" column="10" selection-start="392" selection-end="392" vertical-scroll-proportion="-9.142858">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="travis.yml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/travis.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="3" column="49" selection-start="76" selection-end="76" vertical-scroll-proportion="0.044226043">
               <folding />
             </state>
           </provider>
@@ -115,6 +112,7 @@
         <option value="$PROJECT_DIR$/tests/phpunit.xml" />
         <option value="$PROJECT_DIR$/src/Pseudo/PdoStatement.php" />
         <option value="$PROJECT_DIR$/tests/PdoStatementTest.php" />
+        <option value="$PROJECT_DIR$/travis.yml" />
       </list>
     </option>
   </component>
@@ -490,7 +488,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/PdoStatementTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="10" selection-start="392" selection-end="392" vertical-scroll-proportion="0.001261034">
+        <state line="16" column="10" selection-start="392" selection-end="392" vertical-scroll-proportion="-9.142858">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/travis.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="3" column="49" selection-start="76" selection-end="76" vertical-scroll-proportion="0.044226043">
           <folding />
         </state>
       </provider>
