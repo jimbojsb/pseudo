@@ -3,4 +3,5 @@ language: php
 php:
   - 5.4
 
-script: cd tests && phpunit
+script:
+ - phpunit --configuration tests/phpunit.xml
