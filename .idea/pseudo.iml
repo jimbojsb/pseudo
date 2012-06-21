@@ -4,6 +4,16 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library name="PHP">
+        <CLASSES>
+          <root url="file:///usr/local/lib/php" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file:///usr/local/lib/php" />
+        </SOURCES>
+      </library>
+    </orderEntry>
   </component>
 </module>
 
