@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f81b75af-20ed-4d32-976c-5782e43149df" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/PdoTest.php" afterPath="$PROJECT_DIR$/tests/PdoTest.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/phpunit.xml" afterPath="$PROJECT_DIR$/tests/phpunit.xml" />
     </list>
     <ignored path="pseudo.iws" />
@@ -64,7 +63,7 @@
       <file leaf-file-name="phpunit.xml" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tests/phpunit.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="91" selection-start="159" selection-end="159" vertical-scroll-proportion="0.044226043">
+            <state line="3" column="54" selection-start="122" selection-end="122" vertical-scroll-proportion="0.044226043">
               <folding />
             </state>
           </provider>
@@ -496,7 +495,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/phpunit.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="91" selection-start="159" selection-end="159" vertical-scroll-proportion="0.044226043">
+        <state line="3" column="54" selection-start="122" selection-end="122" vertical-scroll-proportion="0.044226043">
           <folding />
         </state>
       </provider>
