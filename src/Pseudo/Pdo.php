@@ -3,8 +3,10 @@ namespace Pseudo;
 
 class Pdo extends \PDO
 {
-    protected $mockedQueries;
-    protected $queryLog = [];
+    private $mockedQueries;
+    private $queryLog = [];
+    private $inTransaction = false;
+
 
     public function prepare($statement, array $driver_options = null)
     {
@@ -13,22 +15,36 @@ class Pdo extends \PDO
 
     public function beginTransaction()
     {
+        if (!$this->inTransaction) {
+            $this->inTransaction = true;
+            return true;
+        }
+        return false;
         // not yet implemented
     }
 
     public function commit()
     {
+        if ($this->inTransaction()) {
+            $this->inTransaction = false;
+            return true;
+        }
+        return false;
         // not yet implemented
     }
 
     public function rollBack()
     {
+        if ($this->inTransaction()) {
+            $this->inTransaction = false;
+            return true;
+        }
         // not yet implemented
     }
 
     public function inTransaction()
     {
-        // not yet implemented
+        return $this->inTransaction;
     }
 
     public function setAttribute($attribute, $value)

@@ -66,4 +66,23 @@ class PdoTest extends PHPUnit_Framework_TestCase
         $p->query($sql);
         $this->assertEquals(1, $p->lastInsertId());
     }
+
+    public function testTransactionStates()
+    {
+        $p = new Pseudo\Pdo();
+        $this->assertEquals($p->inTransaction(), false);
+
+        $this->assertEquals($p->beginTransaction(), true);
+        $this->assertEquals($p->inTransaction(), true);
+
+        $this->assertEquals($p->commit(), true);
+        $this->assertEquals($p->inTransaction(), false);
+
+        $p->beginTransaction();
+        $this->assertEquals($p->beginTransaction(), false);
+        $this->assertEquals($p->inTransaction(), true);
+        $this->assertEquals($p->rollBack(), true);
+        $this->assertEquals($p->commit(), false);
+
+    }
 }
