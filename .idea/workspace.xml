@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f81b75af-20ed-4d32-976c-5782e43149df" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pseudo/Pdo.php" afterPath="$PROJECT_DIR$/src/Pseudo/Pdo.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tests/PdoTest.php" afterPath="$PROJECT_DIR$/tests/PdoTest.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="pseudo.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -52,10 +52,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PdoTest.php" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="PdoTest.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tests/PdoTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="82" column="55" selection-start="2493" selection-end="2493" vertical-scroll-proportion="1.2408575">
+            <state line="82" column="55" selection-start="2493" selection-end="2493" vertical-scroll-proportion="-46.857143">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="0" column="5" selection-start="5" selection-end="5" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -106,6 +115,7 @@
         <option value="$PROJECT_DIR$/src/Pseudo/Result.php" />
         <option value="$PROJECT_DIR$/src/Pseudo/Pdo.php" />
         <option value="$PROJECT_DIR$/tests/PdoTest.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -482,7 +492,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tests/PdoTest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="55" selection-start="2493" selection-end="2493" vertical-scroll-proportion="1.2408575">
+        <state line="82" column="55" selection-start="2493" selection-end="2493" vertical-scroll-proportion="-46.857143">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="5" selection-start="5" selection-end="5" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
