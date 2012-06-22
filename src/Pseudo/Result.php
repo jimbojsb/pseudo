@@ -6,6 +6,7 @@ class Result
     private $rows;
     private $errorCode;
     private $errorInfo;
+    private $affectedRowCount = 0;
     private $insertId = 0;
 
     public function __construct($rows = null)
@@ -39,7 +40,11 @@ class Result
 
     public function setErrorCode($errorCode)
     {
-        $this->errorCode = $errorCode;
+        if (ctype_alnum($errorCode) && strlen($errorCode) == 5) {
+            $this->errorCode = $errorCode;
+        } else {
+            throw new Exception("Error codes must be in ANSI SQL standard format");
+        }
     }
 
     public function getErrorCode()
@@ -55,5 +60,15 @@ class Result
     public function getErrorInfo()
     {
         return $this->errorInfo;
+    }
+
+    public function setAffectedRowCount($affectedRowCount)
+    {
+        $this->affectedRowCount = $affectedRowCount;
+    }
+
+    public function getAffectedRowCount()
+    {
+        return $this->affectedRowCount;
     }
 }

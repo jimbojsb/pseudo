@@ -11,8 +11,10 @@ class ResultCollection
 
         if (is_array($results)) {
             $storedResults = new Result($results);
-        } else {
+        } else if ($results instanceof Result) {
             $storedResults = $results;
+        } else {
+            $storedResults = new Result;
         }
 
         $this->queries[$sqlHash] = $storedResults;
@@ -25,7 +27,12 @@ class ResultCollection
 
     public function getResult($sql)
     {
-        return $this->queries[$this->hashSql($sql)];
+        $result = $this->queries[$this->hashSql($sql)];
+        if ($result instanceof Result) {
+            return $result;
+        } else {
+            throw new Exception("Attempting an operation on an un-mocked query is not allowed");
+        }
     }
 
     private function hashSql($sql)

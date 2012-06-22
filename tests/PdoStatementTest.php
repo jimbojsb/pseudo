@@ -73,5 +73,29 @@ class PdoStatementTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($expectedFetchResult, $fetchResult);
     }
 
+    public function testRowCount()
+    {
+        $s = new Pseudo\PdoStatement();
+        $r = new Pseudo\Result();
+        $s->setResult($r);
+        $this->assertEquals(0, $s->rowCount());
+        $r->setAffectedRowCount(5);
+        $this->assertEquals(5, $s->rowCount());
+    }
 
+    public function testErrorCode()
+    {
+        $r = new Pseudo\Result();
+        $r->setErrorCode("HY000");
+        $p = new Pseudo\PdoStatement($r);
+        $this->assertEquals("HY000", $p->errorCode());
+    }
+
+    public function testErrorInfo()
+    {
+        $r = new Pseudo\Result();
+        $r->setErrorInfo("Storage engine error");
+        $p = new Pseudo\PdoStatement($r);
+        $this->assertEquals("Storage engine error", $p->errorInfo());
+    }
 }

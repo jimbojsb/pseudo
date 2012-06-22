@@ -8,9 +8,11 @@ class Pdo extends \PDO
     private $inTransaction = false;
 
 
-    public function prepare($statement, array $driver_options = null)
+    public function prepare($statement)
     {
-        // not yet implemented
+        $result = $this->mockedQueries->getResult($statement);
+        $statement = new PdoStatement($result);
+        return $statement;
     }
 
     public function beginTransaction()
@@ -54,9 +56,17 @@ class Pdo extends \PDO
 
     public function exec($statement)
     {
-        // not yet implemented
+        $result = $this->query($statement);
+        if ($result) {
+            return $result->rowCount();
+        }
+        return 0;
     }
 
+    /**
+     * @param string $statement
+     * @return PdoStatement
+     */
     public function query($statement)
     {
         if ($this->mockedQueries->exists($statement)) {
@@ -121,7 +131,7 @@ class Pdo extends \PDO
 
     }
 
-    public function mock($sql, $expectedResults, $params = null)
+    public function mock($sql, $expectedResults = null, $params = null)
     {
         $this->mockedQueries->addQuery($sql, $expectedResults);
     }

@@ -9,9 +9,12 @@ class PdoStatement extends \PDOStatement
      */
     private $result;
 
-    public function __construct()
+    public function __construct($result = null)
     {
-
+        if (!($result instanceof Result)) {
+            $result = new Result();
+        }
+        $this->result = $result;;
     }
 
     public function setResult(Result $result)
@@ -46,7 +49,7 @@ class PdoStatement extends \PDOStatement
 
     public function rowCount()
     {
-        parent::rowCount();
+        return $this->result->getAffectedRowCount();
     }
 
     public function fetchColumn($column_number = 0)
@@ -99,12 +102,12 @@ class PdoStatement extends \PDOStatement
 
     public function errorCode()
     {
-        parent::errorCode();
+        return $this->result->getErrorCode();
     }
 
     public function errorInfo()
     {
-        parent::errorInfo();
+        return $this->result->getErrorInfo();
     }
 
     public function setAttribute($attribute, $value)
