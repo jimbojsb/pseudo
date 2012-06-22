@@ -98,4 +98,17 @@ class PdoStatementTest extends PHPUnit_Framework_TestCase
         $p = new Pseudo\PdoStatement($r);
         $this->assertEquals("Storage engine error", $p->errorInfo());
     }
+
+    public function testColumnCount()
+    {
+        $r = new Pseudo\Result();
+        $r->addRow(
+            [
+                'id'  => 1,
+                'foo' => 'bar'
+            ]
+        );
+        $p = new Pseudo\PdoStatement($r);
+        $this->assertEquals(2, $p->columnCount());
+    }
 }

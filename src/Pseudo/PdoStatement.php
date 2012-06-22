@@ -122,12 +122,17 @@ class PdoStatement extends \PDOStatement
 
     public function columnCount()
     {
-        parent::columnCount();
+        $rows = $this->result->getRows();
+        if ($rows) {
+            $row = array_shift($rows);
+            return count(array_keys($row));
+        }
+        return 0;
     }
 
     public function getColumnMeta($column)
     {
-        parent::getColumnMeta($column);
+        // not implemented
     }
 
     public function setFetchMode($mode)
