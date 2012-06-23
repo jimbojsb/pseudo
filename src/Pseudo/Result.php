@@ -48,6 +48,10 @@ class Result
         return $this->insertId;
     }
 
+    /**
+     * @param $errorCode
+     * @throws Exception
+     */
     public function setErrorCode($errorCode)
     {
         if (ctype_alnum($errorCode) && strlen($errorCode) == 5) {
@@ -57,16 +61,25 @@ class Result
         }
     }
 
+    /**
+     * @return string
+     */
     public function getErrorCode()
     {
         return $this->errorCode;
     }
 
+    /**
+     * @param $errorInfo
+     */
     public function setErrorInfo($errorInfo)
     {
         $this->errorInfo = $errorInfo;
     }
 
+    /**
+     * @return string
+     */
     public function getErrorInfo()
     {
         return $this->errorInfo;

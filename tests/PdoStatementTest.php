@@ -144,6 +144,18 @@ class PdoStatementTest extends PHPUnit_Framework_TestCase
         $p->setFetchMode(PDO::FETCH_ASSOC);
         $this->assertEquals($row1, $p->fetch());
         $this->assertEquals($row2, $p->fetch());
+    }
 
+    public function testFetchObject()
+    {
+        $row1 = [
+            'id' => 1,
+            'foo' => 'bar',
+        ];
+        $testObject = (object) $row1;
+        $r = new Pseudo\Result();
+        $r->addRow($row1);
+        $s = new Pseudo\PdoStatement($r);
+        $this->assertEquals($testObject, $s->fetchObject());
     }
 }

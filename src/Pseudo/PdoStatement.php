@@ -25,7 +25,6 @@ class PdoStatement extends \PDOStatement
 
     public function execute(array $input_parameters = null)
     {
-        parent::execute($input_parameters);
     }
 
     public function fetch($fetch_style = null, $cursor_orientation = PDO::FETCH_ORI_NEXT, $cursor_offset = 0)
@@ -101,31 +100,43 @@ class PdoStatement extends \PDOStatement
         return null;
     }
 
-    public function fetchObject($class_name = "stdClass", array $ctor_args = null)
+    /**
+     * @param string $class_name
+     * @param array $ctor_args
+     * @return bool|mixed
+     */
+    public function fetchObject($class_name = "stdClass", array $ctor_args = [])
     {
-        parent::fetchObject($class_name, $ctor_args);
+        $row = $this->result->nextRow();
+        if ($row) {
+            $obj = call_user_func_array($class_name, $ctor_args);
+            foreach ($row as $key => $val) {
+                $obj->$key = $val;
+            }
+            return $obj;
+        }
+        return false;
     }
 
+    /**
+     * @return string
+     */
     public function errorCode()
     {
         return $this->result->getErrorCode();
     }
 
+    /**
+     * @return string
+     */
     public function errorInfo()
     {
         return $this->result->getErrorInfo();
     }
 
-    public function setAttribute($attribute, $value)
-    {
-        parent::setAttribute($attribute, $value);
-    }
-
-    public function getAttribute($attribute)
-    {
-        parent::getAttribute($attribute);
-    }
-
+    /**
+     * @return int
+     */
     public function columnCount()
     {
         $rows = $this->result->getRows();
@@ -136,11 +147,10 @@ class PdoStatement extends \PDOStatement
         return 0;
     }
 
-    public function getColumnMeta($column)
-    {
-        // not implemented
-    }
-
+    /**
+     * @param int $mode
+     * @return bool|int
+     */
     public function setFetchMode($mode)
     {
         $r = new \ReflectionClass(new Pdo());
@@ -175,5 +185,24 @@ class PdoStatement extends \PDOStatement
     {
         parent::debugDumpParams();
     }
+
+
+    // some functions make no sense when not actually talking to a database, so they are not implemented
+
+    public function setAttribute($attribute, $value)
+    {
+        // not implemented
+    }
+
+    public function getAttribute($attribute)
+    {
+        // not implemented
+    }
+
+    public function getColumnMeta($column)
+    {
+        // not implemented
+    }
+
 
 }

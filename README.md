@@ -4,4 +4,4 @@ A system for mocking PHP PDO connections
 
 Tests
 -----
-[TravisCI](http://travis-ci.org/#!/jimbojsb/pseudo)
+[![Build Status](https://secure.travis-ci.org/jimbojsb/pseudo.png?branch=master)](http://travis-ci.org/jimbojsb/pseudo)
