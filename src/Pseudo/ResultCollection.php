@@ -1,9 +1,14 @@
 <?php
 namespace Pseudo;
 
-class ResultCollection
+class ResultCollection implements \Countable
 {
     private $queries = [];
+
+    public function count()
+    {
+        return count($this->queries);
+    }
 
     public function addQuery($sql, $results)
     {

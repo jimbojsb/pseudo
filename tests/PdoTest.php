@@ -1,15 +1,42 @@
 <?php
 class PdoTest extends PHPUnit_Framework_TestCase
 {
-    public function testMockQueryIsStored()
+    public function testMock()
     {
-        $sql = "SELECT 1";
+        $sql1 = "SELECT * FROM test WHERE foo='bar'";
+        $result1 = [
+            [
+                'id'  => 1,
+                'foo' => 'bar'
+            ]
+        ];
+
         $p = new Pseudo\Pdo();
-        $p->mock($sql, [[1]]);
+        $p->mock($sql1, $result1);
         $queries = $p->getMockedQueries();
-        $this->assertTrue($queries->exists($sql));
-        $resultRows = $queries->getResult($sql)->getRows();
-        $this->assertEquals($resultRows[0], [1]);
+        $this->assertTrue($queries->exists($sql1));
+
+        $sql2 = "SELECT * FROM test WHERE foo=:param1";
+        $params2 = ["param1" => "bar"];
+
+        $sql3 = "SELECT * FROM test WHERE foo=?";
+        $params3 = ['bar'];
+
+        $params4 = ['baz'];
+        $result2 = [
+            [
+                'id'  => 2,
+                'foo' => 'baz'
+            ]
+        ];
+
+        $p->mock($sql2, $result1, $params2);
+        $p->mock($sql3, $result1, $params3);
+        $p->mock($sql3, $result2, $params4);
+
+        $this->assertEquals(3, count($p->getMockedQueries()));
+
+
     }
 
 
