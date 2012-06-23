@@ -82,6 +82,10 @@ class Pdo extends \PDO
         }
     }
 
+    /**
+     * @param null $name
+     * @return int
+     */
     public function lastInsertId($name = null)
     {
         $result = $this->getLastResult();
@@ -133,7 +137,7 @@ class Pdo extends \PDO
 
     public function mock($sql, $expectedResults = null, $params = null)
     {
-        $this->mockedQueries->addQuery($sql, $expectedResults);
+        $this->mockedQueries->addQuery($sql, $expectedResults, $params);
     }
 
     public function getMockedQueries()

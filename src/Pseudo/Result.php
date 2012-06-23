@@ -8,6 +8,7 @@ class Result
     private $errorInfo;
     private $affectedRowCount = 0;
     private $insertId = 0;
+    private $rowOffset = 0;
 
     public function __construct($rows = null)
     {
@@ -15,8 +16,6 @@ class Result
             $this->rows = $rows;
         }
     }
-
-
 
     public function addRow(array $row)
     {
@@ -26,6 +25,17 @@ class Result
     public function getRows()
     {
         return $this->rows;
+    }
+
+    public function nextRow()
+    {
+        $row = $this->rows[$this->rowOffset];
+        if ($row) {
+            $this->rowOffset++;
+            return $row;
+        } else {
+            return false;
+        }
     }
 
     public function setInsertId($insertId)

@@ -9,4 +9,23 @@ class ResultTest extends PHPUnit_Framework_TestCase
         $this->setExpectedException("Pseudo\\Exception");
         $r->setErrorCode("121");
     }
+
+    public function testNextRow()
+    {
+        $row1 = [
+            'id' => 1,
+            'foo' => 'bar',
+        ];
+        $row2 = [
+            'id'  => 2,
+            'foo' => 'baz'
+        ];
+        $r = new Pseudo\Result();
+        $r->addRow($row1);
+        $r->addRow($row2);
+
+        $this->assertEquals($row1, $r->nextRow());
+        $this->assertEquals($row2, $r->nextRow());
+        $this->assertEquals(false, $r->nextRow());
+    }
 }
