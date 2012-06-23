@@ -45,6 +45,6 @@ class ResultTest extends PHPUnit_Framework_TestCase
 
         $r = new Pseudo\Result;
         $r->addRow($row, $params);
-        $this->assertEquals(1, count($r->getRows()));
+        $this->assertEquals(1, count($r->getRows($params)));
     }
 }
