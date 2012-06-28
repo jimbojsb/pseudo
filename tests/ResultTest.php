@@ -47,4 +47,18 @@ class ResultTest extends PHPUnit_Framework_TestCase
         $r->addRow($row, $params);
         $this->assertEquals(1, count($r->getRows($params)));
     }
+
+    public function testReset()
+    {
+        $row = [
+            'id'  => 1,
+            'foo' => 'bar'
+        ];
+        $r = new Pseudo\Result();
+        $r->addRow($row);
+        $this->assertEquals($row, $r->nextRow());
+        $this->assertEquals(null, $r->nextRow());
+        $r->reset();
+        $this->assertEquals($row, $r->nextRow());
+    }
 }

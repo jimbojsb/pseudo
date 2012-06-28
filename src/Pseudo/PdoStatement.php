@@ -10,6 +10,7 @@ class PdoStatement extends \PDOStatement
     private $result;
     private $fetchMode;
     private $boundParams = [];
+    private $boundColumns = [];
 
     public function __construct($result = null)
     {
@@ -52,7 +53,8 @@ class PdoStatement extends \PDOStatement
 
     public function bindColumn($column, &$param, $type = null, $maxlen = null, $driverdata = null)
     {
-        parent::bindColumn($column, $param, $type, $maxlen, $driverdata);
+        $this->boundColumns[$column] =&$param;
+        return true;
     }
 
     public function bindValue($parameter, $value, $data_type = PDO::PARAM_STR)
@@ -105,6 +107,21 @@ class PdoStatement extends \PDOStatement
                 return $returnRow;
             case \PDO::FETCH_OBJ:
                 return (object) $row;
+            case \PDO::FETCH_BOUND:
+                if ($this->boundColumns) {
+                    if ($this->result->isOrdinalArray($this->boundColumns)) {
+                        foreach ($this->boundColumns as &$column) {
+                            $column = array_values($row)[++$i];
+                        }
+                    } else {
+
+                        foreach ($this->boundColumns as $columnName => &$column) {
+                            $column = $row[$columnName];
+                        }
+                    }
+                    return true;
+                }
+                break;
         }
         return null;
     }

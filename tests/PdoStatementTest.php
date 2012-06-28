@@ -146,6 +146,28 @@ class PdoStatementTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($row2, $p->fetch());
     }
 
+    public function testFetchWithBoundColumns()
+    {
+        $row1 = [
+            'id' => 1,
+            'foo' => 'bar',
+        ];
+        $r = new Pseudo\Result();
+        $r->addRow($row1);
+        $p = new Pseudo\PdoStatement($r);
+        $p->bindColumn(2, $test);
+        $p->fetch(PDO::FETCH_BOUND);
+        $this->assertEquals('bar', $test);
+        unset($test);
+
+        $r->reset();
+        $p = new Pseudo\PdoStatement($r);
+        $p->bindColumn('foo', $test);
+        $p->fetch(PDO::FETCH_BOUND);
+        $this->assertEquals('bar', $test);
+    }
+
+
     public function testFetchObject()
     {
         $row1 = [

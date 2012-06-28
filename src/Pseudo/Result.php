@@ -119,9 +119,14 @@ class Result
         return $this->affectedRowCount;
     }
 
-    private function isOrdinalArray(array $arr)
+    public function isOrdinalArray(array $arr)
     {
-        return array_values($arr) === $arr;
+        return !(is_string(key($arr)));
+    }
+
+    public function reset()
+    {
+        $this->rowOffset = 0;
     }
 
     private function stringifyParameterSet(array $params)
