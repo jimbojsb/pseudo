@@ -9,6 +9,7 @@ class PdoStatement extends \PDOStatement
      */
     private $result;
     private $fetchMode;
+    private $boundParams = [];
 
     public function __construct($result = null)
     {
@@ -23,7 +24,7 @@ class PdoStatement extends \PDOStatement
         $this->result = $result;
     }
 
-    public function execute(array $input_parameters = array())
+    public function execute(array $input_parameters = [])
     {
         try {
             $success = (bool) $this->result->getRows($input_parameters);
@@ -45,7 +46,8 @@ class PdoStatement extends \PDOStatement
 
     public function bindParam($parameter, &$variable, $data_type = PDO::PARAM_STR, $length = null, $driver_options = null)
     {
-        parent::bindParam($parameter, $variable, $data_type, $length, $driver_options);
+        $this->boundParams[$parameter] =&$variable;
+        return true;
     }
 
     public function bindColumn($column, &$param, $type = null, $maxlen = null, $driverdata = null)
@@ -55,7 +57,8 @@ class PdoStatement extends \PDOStatement
 
     public function bindValue($parameter, $value, $data_type = PDO::PARAM_STR)
     {
-        parent::bindValue($parameter, $value, $data_type);
+        $this->boundParams[$parameter] = $value;
+        return true;
     }
 
     public function rowCount()
@@ -179,17 +182,17 @@ class PdoStatement extends \PDOStatement
 
     public function nextRowset()
     {
-        parent::nextRowset();
+        // not implemented
     }
 
     public function closeCursor()
     {
-        parent::closeCursor();
+        // not implemented
     }
 
     public function debugDumpParams()
     {
-        parent::debugDumpParams();
+        // not implemented
     }
 
 
@@ -210,5 +213,9 @@ class PdoStatement extends \PDOStatement
         // not implemented
     }
 
+    public function getBoundParams()
+    {
+        return $this->boundParams;
+    }
 
 }

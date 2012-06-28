@@ -175,7 +175,23 @@ class PdoStatementTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals(true, $s->execute($params1));
         $this->assertEquals(false, $s->execute());
+    }
 
+    public function testBindParam()
+    {
+        $param = 'foo';
+        $s = new Pseudo\PdoStatement();
+        $this->assertEquals(true, $s->bindParam(1, $param));
+        $param = 'bar';
+        $this->assertEquals([1 => 'bar'], $s->getBoundParams());
+    }
 
+    public function testBindValue()
+    {
+        $param = 'foo';
+        $s = new Pseudo\PdoStatement();
+        $this->assertEquals(true, $s->bindValue(1, $param));
+        $param = 'bar';
+        $this->assertEquals([1 => 'foo'], $s->getBoundParams());
     }
 }
