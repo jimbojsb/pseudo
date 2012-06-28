@@ -216,4 +216,19 @@ class PdoStatementTest extends PHPUnit_Framework_TestCase
         $param = 'bar';
         $this->assertEquals([1 => 'foo'], $s->getBoundParams());
     }
+
+    public function testFetchColumn()
+    {
+        $row1 = [
+            'id' => 1,
+            'foo' => 'bar',
+        ];
+
+        $r = new Pseudo\Result();
+        $r->addRow($row1);
+        $s = new Pseudo\PdoStatement($r);
+
+        $this->assertEquals('bar', $s->fetchColumn(1));
+        $this->assertEquals(false, $s->fetchColumn(0));
+    }
 }

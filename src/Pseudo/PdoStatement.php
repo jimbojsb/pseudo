@@ -70,7 +70,12 @@ class PdoStatement extends \PDOStatement
 
     public function fetchColumn($column_number = 0)
     {
-        parent::fetchColumn($column_number);
+        $row = $this->result->nextRow();
+        if ($row) {
+            $row = $this->proccessFetchedRow($row, \PDO::FETCH_NUM);
+            return $row[$column_number];
+        }
+        return false;
     }
 
     public function fetchAll($fetch_style = \PDO::FETCH_BOTH, $fetch_argument = null, $ctor_args = 'array()')
