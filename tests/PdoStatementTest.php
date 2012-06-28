@@ -158,4 +158,24 @@ class PdoStatementTest extends PHPUnit_Framework_TestCase
         $s = new Pseudo\PdoStatement($r);
         $this->assertEquals($testObject, $s->fetchObject());
     }
+
+    public function testExecute()
+    {
+        $row1 = [
+            'id' => 1,
+            'foo' => 'bar',
+        ];
+        $params1 = [
+            'bar'
+        ];
+
+        $r = new Pseudo\Result();
+        $r->addRow($row1, $params1);
+        $s = new Pseudo\PdoStatement($r);
+
+        $this->assertEquals(true, $s->execute($params1));
+        $this->assertEquals(false, $s->execute());
+
+
+    }
 }

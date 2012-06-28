@@ -23,8 +23,14 @@ class PdoStatement extends \PDOStatement
         $this->result = $result;
     }
 
-    public function execute(array $input_parameters = null)
+    public function execute(array $input_parameters = array())
     {
+        try {
+            $success = (bool) $this->result->getRows($input_parameters);
+            return $success;
+        } catch (Exception $e) {
+            return false;
+        }
     }
 
     public function fetch($fetch_style = null, $cursor_orientation = PDO::FETCH_ORI_NEXT, $cursor_offset = 0)
