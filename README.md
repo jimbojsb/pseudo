@@ -33,3 +33,6 @@ Pseudo has a fairly robust test suite written with PHPUnit. If you'd like to run
 
 Pseudo is also tested on Travis-CI   
 [![Build Status](https://secure.travis-ci.org/jimbojsb/pseudo.png?branch=master)](http://travis-ci.org/jimbojsb/pseudo)
+
+## Requirements
+Pseudo internals currently target PHP 5.4.0 and above. It has no external dependencies aside from the PDO extension, which seems rather obvious.
