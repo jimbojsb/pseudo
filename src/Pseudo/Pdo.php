@@ -6,6 +6,7 @@ class Pdo extends \PDO
     private $mockedQueries;
     private $queryLog = [];
     private $inTransaction = false;
+    private $realPdo = null;
 
 
     public function prepare($statement)
@@ -132,7 +133,17 @@ class Pdo extends \PDO
 
     public function record(PDO $pdo)
     {
+        $this->realPdo = $pdo;
+    }
 
+    public function save($filePath)
+    {
+        file_put_contents($filePath, serialize($this->mockedQueries));
+    }
+
+    public function load($filePath)
+    {
+        $this->mockedQueries = unserialize(file_get_contents($filePath));
     }
 
     public function mock($sql, $expectedResults = null, $params = null)
