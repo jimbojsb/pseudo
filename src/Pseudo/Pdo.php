@@ -126,9 +126,9 @@ class Pdo extends \PDO
         // not yet implemented
     }
 
-    public function __construct()
+    public function __construct(ResultCollection $collection = null)
     {
-        $this->mockedQueries = new ResultCollection();
+        $this->mockedQueries = $collection ?: new ResultCollection();
     }
 
     public function record(PDO $pdo)

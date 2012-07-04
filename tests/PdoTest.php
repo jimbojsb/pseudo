@@ -131,6 +131,35 @@ class PdoTest extends PHPUnit_Framework_TestCase
         $p->mock($sql);
         $statement = $p->prepare($sql);
         $this->assertInstanceOf("Pseudo\\PdoStatement", $statement);
+    }
 
+    public function testLoad()
+    {
+        $r = new Pseudo\ResultCollection();
+        $r->addQuery("SELECT 1", [[1]]);
+        $serialized = serialize($r);
+        if (file_exists('testload')) {
+            unlink('testload');
+        }
+        file_put_contents('testload', $serialized);
+        $p = new Pseudo\Pdo();
+        $p->load('testload');
+        $this->assertEquals($r, $p->getMockedQueries());
+        unlink('testload');
+    }
+
+    public function testSave()
+    {
+        $r = new Pseudo\ResultCollection();
+        $r->addQuery("SELECT 1", [[1]]);
+        $serialized = serialize($r);
+        if (file_exists('testsave')) {
+            unlink('testsave');
+        }
+        $p = new Pseudo\Pdo($r);
+        $p->save('testsave');
+        $queries = unserialize(file_get_contents('testsave'));
+        $this->assertEquals($r, $queries);
+        unlink('testsave');
     }
 }
