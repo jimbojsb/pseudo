@@ -1,0 +1,7 @@
+.idea
+<<<<<<< HEAD
+*.phar
+=======
+/vendor/
+composer.lock
+>>>>>>> update for composer

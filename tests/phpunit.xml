@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<phpunit bootstrap="bootstrap.php">
+<phpunit>
     <php>
         <ini name="error_reporting" value="E_ALL &amp; ~(E_NOTICE | E_DEPRECATED | E_STRICT)"/>
     </php>
