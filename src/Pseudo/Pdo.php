@@ -9,7 +9,7 @@ class Pdo extends \PDO
     private $realPdo = null;
 
 
-    public function prepare($statement)
+    public function prepare($statement, $options = null)
     {
         $result = $this->mockedQueries->getResult($statement);
         $statement = new PdoStatement($result);
