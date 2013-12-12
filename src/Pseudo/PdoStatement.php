@@ -25,7 +25,7 @@ class PdoStatement extends \PDOStatement
         $this->result = $result;
     }
 
-    public function execute(array $input_parameters = [])
+    public function execute($input_parameters = null)
     {
         try {
             $success = (bool) $this->result->getRows($input_parameters);
@@ -136,7 +136,7 @@ class PdoStatement extends \PDOStatement
      * @param array $ctor_args
      * @return bool|mixed
      */
-    public function fetchObject($class_name = "stdClass", array $ctor_args = [])
+    public function fetchObject($class_name = "stdClass", $ctor_args = null)
     {
         $row = $this->result->nextRow();
         if ($row) {
@@ -182,7 +182,7 @@ class PdoStatement extends \PDOStatement
      * @param int $mode
      * @return bool|int
      */
-    public function setFetchMode($mode)
+    public function setFetchMode($mode, $params = null)
     {
         $r = new \ReflectionClass(new Pdo());
         $constants = $r->getConstants();
