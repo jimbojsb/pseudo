@@ -49,8 +49,9 @@ if (!defined('HAVE_PHP_SQL_PARSER')) {
 
         /**
          * Prints an array only if debug mode is on.
-         * @param array $s
-         * @param boolean $return, if true, the formatted array is returned via return parameter
+         * @param array $arr
+         * @param boolean $return if true, the formatted array is returned via return parameter
+         * @return string
          */
         protected function preprint($arr, $return = false) {
             $x = "<pre>";
@@ -67,8 +68,9 @@ if (!defined('HAVE_PHP_SQL_PARSER')) {
 
         /**
          * Starts one of the strings within the given array $haystack with the string $needle?
-         * @param string or array $haystack
+         * @param string|array $haystack
          * @param string $needle
+         * @return bool|int
          */
         protected function startsWith($haystack, $needle) {
             if (is_string($needle)) {
@@ -87,6 +89,7 @@ if (!defined('HAVE_PHP_SQL_PARSER')) {
          * Ends the given string $haystack with the string $needle?
          * @param string $haystack
          * @param string $needle
+         * @return bool
          */
         protected function endsWith($haystack, $needle) {
             $length = strlen($needle);
@@ -192,11 +195,11 @@ if (!defined('HAVE_PHP_SQL_PARSER')) {
         }
 
         /**
-         * 
          * Change the case of the values of an array.
-         * 
-         * @param Array of Strings $arr
-         * @param unknown_type $case (CASE_LOWER or CASE_UPPER)
+         *
+         * @param array|string $arr
+         * @param int $case (CASE_LOWER or CASE_UPPER)
+         * @return array|string
          * @throws InvalidArgumentException if the first argument is not an array
          */
         protected function changeCaseForArrayValues($arr, $case) {
@@ -534,10 +537,12 @@ if (!defined('HAVE_PHP_SQL_PARSER')) {
          * (select ...)
          * union
          * (select ...)
-         *
          * This function handles this query syntax.  Only one such subquery
          * is supported in each UNION block.  (select)(select)union(select) is not legal.
          * The extra queries will be silently ignored.
+         *
+         * @param array $queries
+         * @return array
          */
         private function processMySQLUnion($queries) {
             $unionTypes = array('UNION', 'UNION ALL');
@@ -1804,6 +1809,9 @@ if (!defined('HAVE_PHP_SQL_PARSER')) {
         /**
          * TODO: This is a dummy function, we cannot parse INTO as part of SELECT
          * at the moment
+         *
+         * @param array $tokens
+         * @return array
          */
         private function process_into($tokens) {
             $unparsed = $tokens['INTO'];
