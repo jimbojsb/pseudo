@@ -23,7 +23,7 @@ class Result
         if ($params) {
             if ($this->isParameterized) {
                 $this->rows[$this->stringifyParameterSet($params)][] = $row;
-            } else if (!$this->parameterized && !$this->rows) {
+            } else if (!$this->isParameterized && !$this->rows) {
                 $this->rows[$this->stringifyParameterSet($params)][] = $row;
                 $this->isParameterized = true;
             }
@@ -51,6 +51,9 @@ class Result
         }
     }
 
+    /**
+     * @return array
+     */
     public function nextRow()
     {
         $row = $this->rows[$this->rowOffset];
