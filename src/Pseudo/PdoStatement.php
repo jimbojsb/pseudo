@@ -25,7 +25,11 @@ class PdoStatement extends \PDOStatement
         $this->result = $result;
     }
 
-    public function execute(array $input_parameters = [])
+	/**
+     * @param array|null $input_parameters
+     * @return bool
+     */
+    public function execute($input_parameters = null)
     {
         try {
             $success = (bool) $this->result->getRows($input_parameters);
@@ -132,11 +136,11 @@ class PdoStatement extends \PDOStatement
     }
 
     /**
-     * @param string $class_name
-     * @param array $ctor_args
+     * @param string|null $class_name
+     * @param array|null $ctor_args
      * @return bool|mixed
      */
-    public function fetchObject($class_name = "stdClass", array $ctor_args = [])
+    public function fetchObject($class_name = null, $ctor_args = null)
     {
         $row = $this->result->nextRow();
         if ($row) {
@@ -180,9 +184,10 @@ class PdoStatement extends \PDOStatement
 
     /**
      * @param int $mode
+     * @param array|null $params
      * @return bool|int
      */
-    public function setFetchMode($mode)
+    public function setFetchMode($mode, $params = null)
     {
         $r = new \ReflectionClass(new Pdo());
         $constants = $r->getConstants();
@@ -239,5 +244,4 @@ class PdoStatement extends \PDOStatement
     {
         return $this->boundParams;
     }
-
 }
