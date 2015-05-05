@@ -29,10 +29,10 @@ class PdoStatement extends \PDOStatement
      * @param array|null $input_parameters
      * @return bool
      */
-    public function execute($input_parameters = null)
+    public function execute(array $input_parameters = null)
     {
         try {
-            $success = (bool) $this->result->getRows($input_parameters);
+            $success = (bool) $this->result->getRows($input_parameters ?: []);
             return $success;
         } catch (Exception $e) {
             return false;
@@ -140,11 +140,12 @@ class PdoStatement extends \PDOStatement
      * @param array|null $ctor_args
      * @return bool|mixed
      */
-    public function fetchObject($class_name = null, $ctor_args = null)
+    public function fetchObject($class_name = "stdClass", array $ctor_args = null)
     {
         $row = $this->result->nextRow();
         if ($row) {
-            $obj = call_user_func_array($class_name, $ctor_args);
+            $reflect  = new \ReflectionClass($class_name);
+            $obj = $reflect->newInstanceArgs($ctor_args ?: []);
             foreach ($row as $key => $val) {
                 $obj->$key = $val;
             }
