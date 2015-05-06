@@ -25,7 +25,7 @@ The internal storage of mocks and results are associatve arrays. Pseudo attempts
 
 ### Not implemented / wish-list items
 * The transaction api is implemented to the point of managing current transaction state, but transactions have no actual effect
-* Anythign related to scrolling cursors has not been implemented, and this includes the fetch modes that might require them
+* Anything related to scrolling cursors has not been implemented, and this includes the fetch modes that might require them
 * Pseudo can load and save serialized copies of it's mocked data, but in the future, it will be able to "record" a live PDO connection to a real database and then use that data to create mocks from your actual data
 
 ##Tests
