@@ -12,7 +12,7 @@ class ResultCollection implements \Countable
 
     public function addQuery($sql, $results)
     {
-        $sqlHash = $this->hashSql($sql);
+        $query = new ParsedQuery($sql);
 
         if (is_array($results)) {
             $storedResults = new Result($results);
@@ -22,29 +22,25 @@ class ResultCollection implements \Countable
             $storedResults = new Result;
         }
 
-        $this->queries[$sqlHash] = $storedResults;
+        $this->queries[$query->getHash()] = $storedResults;
     }
 
     public function exists($sql)
     {
-        return isset($this->queries[$this->hashSql($sql)]);
+        $query = new ParsedQuery($sql);
+        return isset($this->queries[$query->getHash()]);
     }
 
-    public function getResult($sql)
+    public function getResult($query)
     {
-        $result = $this->queries[$this->hashSql($sql)];
+        if (!($query instanceof ParsedQuery)) {
+            $query = new ParsedQuery($query);
+        }
+        $result = $this->queries[$query->getHash()];
         if ($result instanceof Result) {
             return $result;
         } else {
             throw new Exception("Attempting an operation on an un-mocked query is not allowed");
         }
     }
-
-    private function hashSql($sql)
-    {
-        $p = new \PHPSQLParser();
-        $hash = sha1(serialize($p->parse($sql)));
-        return $hash;
-    }
-
 }

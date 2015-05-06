@@ -4,10 +4,8 @@ namespace Pseudo;
 class Pdo extends \PDO
 {
     private $mockedQueries;
-    private $queryLog = [];
     private $inTransaction = false;
-    private $realPdo = null;
-
+    private $queryLog;
 
     public function prepare($statement, array $driver_options = [])
     {
@@ -73,7 +71,7 @@ class Pdo extends \PDO
         if ($this->mockedQueries->exists($statement)) {
             $result = $this->mockedQueries->getResult($statement);
             if ($result) {
-                $this->queryLog[] = $statement;
+                $this->queryLog->addQuery($statement);
                 $statement = new PdoStatement();
                 $statement->setResult($result);
                 return $statement;
@@ -126,31 +124,44 @@ class Pdo extends \PDO
         // not yet implemented
     }
 
+    /**
+     * @param ResultCollection $collection
+     */
     public function __construct(ResultCollection $collection = null)
     {
         $this->mockedQueries = $collection ?: new ResultCollection();
+        $this->queryLog = new QueryLog();
     }
 
-    public function record(PDO $pdo)
-    {
-        $this->realPdo = $pdo;
-    }
-
+    /**
+     * @param string $filePath
+     */
     public function save($filePath)
     {
         file_put_contents($filePath, serialize($this->mockedQueries));
     }
 
+    /**
+     * @param $filePath
+     */
     public function load($filePath)
     {
         $this->mockedQueries = unserialize(file_get_contents($filePath));
     }
 
+    /**
+     * @param $sql
+     * @param null $expectedResults
+     * @param null $params
+     */
     public function mock($sql, $expectedResults = null, $params = null)
     {
         $this->mockedQueries->addQuery($sql, $expectedResults, $params);
     }
 
+    /**
+     * @return ResultCollection
+     */
     public function getMockedQueries()
     {
         return $this->mockedQueries;
