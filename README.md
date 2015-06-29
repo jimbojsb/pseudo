@@ -27,6 +27,7 @@ The internal storage of mocks and results are associatve arrays. Pseudo attempts
 * The transaction api is implemented to the point of managing current transaction state, but transactions have no actual effect
 * Anything related to scrolling cursors has not been implemented, and this includes the fetch modes that might require them
 * Pseudo can load and save serialized copies of it's mocked data, but in the future, it will be able to "record" a live PDO connection to a real database and then use that data to create mocks from your actual data
+* Pseudo isn't strict-mode compatible, which means tests might fail due to unexpected errors with signatures and offsets, etc. (I'd happily accept a pull request to fix this!)
 
 ##Tests
 Pseudo has a fairly robust test suite written with PHPUnit. If you'd like to run the tests, simple run "phpunit" in the tests folder. The tests have no external library dependencies and should require no additional setup or bootstrapping to run.  
@@ -36,3 +37,5 @@ Pseudo is also tested on Travis-CI
 
 ## Requirements
 Pseudo internals currently target PHP 5.4.0 and above. It has no external dependencies aside from the PDO extension, which seems rather obvious.
+
+Pseudo is built and tested with error reporting set to ```E_ALL & ~(E_NOTICE | E_DEPRECATED | E_STRICT)```. If you are running in a stricter error reporting mode, your tests will most likely fail due to strict mode method signature violations. (This is on the known issues / to do list)
