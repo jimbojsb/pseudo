@@ -16,7 +16,7 @@ The general idea is that Pseudo implements all of the classes in the PDO system 
 	
 	// now use this $p object like you would any regular PDO 
 	$results = $p->query("SELECT id FROM objects WHERE foo='bar'");
-	while ($result = $results->fetch(PDO::FETCH_ASSOC) {
+	while ($result = $results->fetch(PDO::FETCH_ASSOC)) {
 		echo $result["foo"];  // bar
 	}
 
