@@ -29,7 +29,7 @@ class PdoStatement extends \PDOStatement
      * @param array|null $input_parameters
      * @return bool
      */
-    public function execute(array $input_parameters = null)
+    public function execute($input_parameters = null)
     {
         try {
             $success = (bool) $this->result->getRows($input_parameters ?: []);
@@ -94,6 +94,7 @@ class PdoStatement extends \PDOStatement
 
     private function proccessFetchedRow($row, $fetchMode)
     {
+		$i = 0;
         switch ($fetchMode ?: $this->fetchMode) {
             case \PDO::FETCH_BOTH:
                 $returnRow = [];
@@ -140,7 +141,7 @@ class PdoStatement extends \PDOStatement
      * @param array|null $ctor_args
      * @return bool|mixed
      */
-    public function fetchObject($class_name = "stdClass", array $ctor_args = null)
+    public function fetchObject($class_name = "stdClass", $ctor_args = null)
     {
         $row = $this->result->nextRow();
         if ($row) {

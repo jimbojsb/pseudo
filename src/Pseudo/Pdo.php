@@ -7,7 +7,7 @@ class Pdo extends \PDO
     private $inTransaction = false;
     private $queryLog;
 
-    public function prepare($statement, array $driver_options = [])
+    public function prepare($statement, $driver_options = [])
     {
         $result = $this->mockedQueries->getResult($statement);
         $statement = new PdoStatement($result);
