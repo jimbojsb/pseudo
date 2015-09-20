@@ -9,6 +9,7 @@ class PdoStatement extends \PDOStatement
      */
     private $result;
     private $fetchMode;
+    private $fetchModeParams = null;
     private $boundParams = [];
     private $boundColumns = [];
 
@@ -44,7 +45,7 @@ class PdoStatement extends \PDOStatement
         // scrolling cursors not implemented
         $row = $this->result->nextRow();
         if ($row) {
-            return $this->proccessFetchedRow($row, $fetch_style);
+            return $this->proccessFetchedRow($row, $this->fetchModeParams, $fetch_style);
         }
         return false;
     }
@@ -87,12 +88,12 @@ class PdoStatement extends \PDOStatement
         $rows = $this->result->getRows();
         $returnArray = [];
         foreach ($rows as $row) {
-            $returnArray[] = $this->proccessFetchedRow($row, $fetch_style);
+            $returnArray[] = $this->proccessFetchedRow($row, $fetch_argument, $fetch_style);
         }
         return $returnArray;
     }
 
-    private function proccessFetchedRow($row, $fetchMode)
+    private function proccessFetchedRow($row, $fetch_argument, $fetchMode)
     {
 		$i = 0;
         switch ($fetchMode ?: $this->fetchMode) {
@@ -131,6 +132,17 @@ class PdoStatement extends \PDOStatement
                     }
                     return true;
                 }
+            case \PDO::FETCH_CLASS:
+                  $returnRow = [];
+                  $obj = new \ReflectionClass($fetch_argument);
+                  $inst = $obj->newInstanceWithoutConstructor();
+                  foreach($row as $key => $value){
+                    $inst->$key = $value;
+                  }
+                  return $inst;
+            case \PDO::FETCH_COLUMN:
+                  return $row[$fetch_argument];
+
                 break;
         }
         return null;
@@ -204,6 +216,8 @@ class PdoStatement extends \PDOStatement
 
         if (in_array($mode, $allowedConstantVals)) {
             $this->fetchMode = $mode;
+            $this->fetchModeParams = $params;
+
             return 1;
         }
         return false;
