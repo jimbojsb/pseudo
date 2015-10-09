@@ -108,13 +108,7 @@ class PdoStatement extends \PDOStatement
             case \PDO::FETCH_ASSOC:
                 return $row;
             case \PDO::FETCH_NUM:
-                $returnRow = [];
-                $keys = array_keys($row);
-                $c = 0;
-                foreach ($keys as $key) {
-                    $returnRow[$c++] = $row[$key];
-                }
-                return $returnRow;
+                return array_values($row);
             case \PDO::FETCH_OBJ:
                 return (object) $row;
             case \PDO::FETCH_BOUND:
