@@ -132,6 +132,9 @@ class PdoStatement extends \PDOStatement
                     return true;
                 }
                 break;
+            case \PDO::FETCH_COLUMN:
+               $returnRow = array_values( $row );
+               return $returnRow[0];
         }
         return null;
     }
