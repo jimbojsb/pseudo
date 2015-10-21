@@ -7,4 +7,4 @@ php:
   - 7.0
 
 script:
-  - composer install --dev && vendor/bin/phpunit --configuration tests/phpunit.xml
+  - composer install --dev && vendor/bin/phpunit
