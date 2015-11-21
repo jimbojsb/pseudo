@@ -39,7 +39,7 @@ class PdoStatement extends \PDOStatement
         }
     }
 
-    public function fetch($fetch_style = null, $cursor_orientation = PDO::FETCH_ORI_NEXT, $cursor_offset = 0)
+    public function fetch($fetch_style = \PDO::FETCH_BOTH, $cursor_orientation = PDO::FETCH_ORI_NEXT, $cursor_offset = 0)
     {
         // scrolling cursors not implemented
         $row = $this->result->nextRow();
