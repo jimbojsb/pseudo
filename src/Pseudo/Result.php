@@ -37,9 +37,13 @@ class Result
         }
     }
 
+    public function setParams($params)
+    {
+        $this->params = $params;
+    }
+
     public function getRows(array $params = [])
     {
-        if (!empty($params)) $this->params = $params;
         if ($this->params !== null && empty($params)) $params = $this->params;
         if ($params) {
             if ($this->isParameterized) {

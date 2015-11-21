@@ -32,6 +32,7 @@ class PdoStatement extends \PDOStatement
     public function execute($input_parameters = null)
     {
         try {
+            $this->result->setParams($input_parameters);
             $success = (bool) $this->result->getRows($input_parameters ?: []);
             return $success;
         } catch (Exception $e) {
