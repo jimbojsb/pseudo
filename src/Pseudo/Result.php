@@ -39,10 +39,10 @@ class Result
 
     public function getRows(array $params = [])
     {
+        if (!empty($params)) $this->params = $params;
         if ($this->params !== null && empty($params)) $params = $this->params;
         if ($params) {
             if ($this->isParameterized) {
-                $this->params = $params;
                 return $this->rows[$this->stringifyParameterSet($params)];
             }
             throw new Exception("Cannot get rows with parameters on a non-parameterized result");
