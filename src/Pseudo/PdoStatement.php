@@ -31,6 +31,7 @@ class PdoStatement extends \PDOStatement
      */
     public function execute($input_parameters = null)
     {
+        $input_parameters = array_merge((array)$input_parameters, $this->boundParams);
         try {
             $this->result->setParams($input_parameters);
             $success = (bool) $this->result->getRows($input_parameters ?: []);
