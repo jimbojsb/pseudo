@@ -8,7 +8,7 @@ class PdoStatement extends \PDOStatement
      * @var Result;
      */
     private $result;
-    private $fetchMode;
+    private $fetchMode = \PDO::FETCH_BOTH; //DEFAULT FETCHMODE
     private $boundParams = [];
     private $boundColumns = [];
 
@@ -31,7 +31,9 @@ class PdoStatement extends \PDOStatement
      */
     public function execute($input_parameters = null)
     {
+        $input_parameters = array_merge((array)$input_parameters, $this->boundParams);
         try {
+            $this->result->setParams($input_parameters);
             $success = (bool) $this->result->getRows($input_parameters ?: []);
             return $success;
         } catch (Exception $e) {

@@ -10,6 +10,7 @@ class Result
     private $affectedRowCount = 0;
     private $insertId = 0;
     private $rowOffset = 0;
+    private $params = null;
 
     public function __construct($rows = null)
     {
@@ -36,8 +37,14 @@ class Result
         }
     }
 
+    public function setParams($params)
+    {
+        $this->params = $params;
+    }
+
     public function getRows(array $params = [])
     {
+        if ($this->params !== null && empty($params)) $params = $this->params;
         if ($params) {
             if ($this->isParameterized) {
                 return $this->rows[$this->stringifyParameterSet($params)];
@@ -56,7 +63,11 @@ class Result
      */
     public function nextRow()
     {
-        $row = (isset($this->rows[$this->rowOffset])) ? $this->rows[$this->rowOffset] : null;
+        if ($this->isParameterized) {
+            $row = $this->rows[$this->stringifyParameterSet($this->params)][$this->rowOffset];
+        } else {
+            $row = (isset($this->rows[$this->rowOffset])) ? $this->rows[$this->rowOffset] : null;
+        }
         if ($row) {
             $this->rowOffset++;
             return $row;
