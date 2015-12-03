@@ -40,6 +40,7 @@ class Result
     public function setParams($params)
     {
         $this->params = $params;
+        $this->isParameterized = true;
     }
 
     public function getRows(array $params = [])
