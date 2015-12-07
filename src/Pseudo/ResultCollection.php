@@ -10,12 +10,12 @@ class ResultCollection implements \Countable
         return count($this->queries);
     }
 
-    public function addQuery($sql, $results)
+    public function addQuery($sql, $results, $params = null)
     {
         $query = new ParsedQuery($sql);
 
         if (is_array($results)) {
-            $storedResults = new Result($results);
+            $storedResults = new Result($results, $params);
         } else if ($results instanceof Result) {
             $storedResults = $results;
         } else {
