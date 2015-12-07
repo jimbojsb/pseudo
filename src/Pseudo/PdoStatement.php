@@ -33,7 +33,7 @@ class PdoStatement extends \PDOStatement
     {
         $input_parameters = array_merge((array)$input_parameters, $this->boundParams);
         try {
-            $this->result->setParams($input_parameters);
+            $this->result->setParams($input_parameters, !empty($this->boundParams));
             $success = (bool) $this->result->getRows($input_parameters ?: []);
             return $success;
         } catch (Exception $e) {
@@ -86,7 +86,7 @@ class PdoStatement extends \PDOStatement
 
     public function fetchAll($fetch_style = \PDO::FETCH_BOTH, $fetch_argument = null, $ctor_args = 'array()')
     {
-        $rows = $this->result->getRows();
+        $rows = $this->result->getRows() ?: [];
         $returnArray = [];
         foreach ($rows as $row) {
             $returnArray[] = $this->proccessFetchedRow($row, $fetch_style);
