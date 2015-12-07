@@ -48,7 +48,7 @@ class Result
     {
         $this->params = $params;
         if($parameterize) {
-            $this->isParameterized = $parameterize;
+            $this->isParameterized = true;
         }
     }
 
