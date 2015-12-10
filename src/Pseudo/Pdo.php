@@ -10,8 +10,7 @@ class Pdo extends \PDO
     public function prepare($statement, $driver_options = null)
     {
         $result = $this->mockedQueries->getResult($statement);
-        $statement = new PdoStatement($result);
-        return $statement;
+        return new PdoStatement($result, $this->queryLog, $statement);
     }
 
     public function beginTransaction()
@@ -76,8 +75,6 @@ class Pdo extends \PDO
                 $statement->setResult($result);
                 return $statement;
             }
-        } else {
-            
         }
     }
 
