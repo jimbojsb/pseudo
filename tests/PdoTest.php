@@ -68,6 +68,18 @@ class PdoTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(1, $p->lastInsertId());
     }
 
+    public function testLastInsertIdPreparedStatement()
+    {
+        $sql = "SELECT * FROM test WHERE foo='bar'";
+        $p = new Pseudo\Pdo();
+        $r = new Pseudo\Result();
+        $r->setInsertId(10);
+        $p->mock($sql, $r);
+        $statement = $p->prepare($sql);
+        $statement->execute();
+        $this->assertEquals(10, $p->lastInsertId());
+    }
+
     public function testErrorInfo()
     {
         $sql = "SELECT 1";
