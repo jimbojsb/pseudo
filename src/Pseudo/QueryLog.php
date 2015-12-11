@@ -1,7 +1,7 @@
 <?php
 namespace Pseudo;
 
-class QueryLog implements \IteratorAggregate, \ArrayAccess
+class QueryLog implements \IteratorAggregate, \ArrayAccess, \Countable
 {
     private $queries = [];
 
@@ -38,5 +38,10 @@ class QueryLog implements \IteratorAggregate, \ArrayAccess
     public function getQueries()
     {
         return $this->queries;
+    }
+
+    public function count()
+    {
+        return count($this->queries);
     }
 }

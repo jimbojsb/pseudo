@@ -218,7 +218,8 @@ class PdoStatementTest extends PHPUnit_Framework_TestCase
 
         $r = new Pseudo\Result();
         $r->addRow($row1, $params1);
-        $s = new Pseudo\PdoStatement($r);
+        $queryLog = new Pseudo\QueryLog();
+        $s = new Pseudo\PdoStatement($r, $queryLog, 'SELECT * FROM test');
 
         $this->assertEquals(true, $s->execute($params1));
         $this->assertEquals(false, $s->execute());
