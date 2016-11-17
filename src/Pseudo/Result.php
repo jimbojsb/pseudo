@@ -64,9 +64,9 @@ class Result
      * @param   array   $rows   Rows to get row from
      * @return  array           Next row (false if doesn't exist)
      */ 
-    private function getRowIfExists(array $rows)
+    private function getRowIfExists($rows)
     {
-        if (empty($rows[$this->rowOffset])) {
+        if (!isset($rows[$this->rowOffset])) {
             return false;
         }
         return $rows[$this->rowOffset];
