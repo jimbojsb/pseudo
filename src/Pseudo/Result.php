@@ -59,22 +59,39 @@ class Result
     }
 
     /**
+     * Returns the next row if it exists, otherwise returns false
+     *
+     * @param   array   $rows   Rows to get row from
+     * @return  array           Next row (false if doesn't exist)
+     */ 
+    private function getRowIfExists(array $rows)
+    {
+        if (empty($rows[$this->rowOffset])) {
+            return false;
+        }
+        return $rows[$this->rowOffset];
+    }
+
+    /**
+     * Returns the next available row if it exists, otherwise returns false
+     *
      * @return array
      */
     public function nextRow()
     {
         if ($this->isParameterized) {
-            $row = $this->rows[$this->stringifyParameterSet($this->params)][$this->rowOffset];
+            $row = $this->getRowIfExists($this->rows[$this->stringifyParameterSet($this->params)]);
         } else {
-            $row = (isset($this->rows[$this->rowOffset])) ? $this->rows[$this->rowOffset] : null;
+            $row = $this->getRowIfExists($this->rows);
         }
+
         if ($row) {
             $this->rowOffset++;
-            return $row;
-        } else {
-            return false;
         }
+
+        return $row;
     }
+
 
     public function setInsertId($insertId)
     {
