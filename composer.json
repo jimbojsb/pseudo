@@ -12,8 +12,8 @@
         "phpunit/phpunit": "4.*"
     },
     "autoload": {
-        "psr-0": {
-            "Pseudo": "src/"
+        "psr-4": {
+            "Pseudo\\": "src/Pseudo"
         },
         "files": [
             "src/php-sql-parser.php"
