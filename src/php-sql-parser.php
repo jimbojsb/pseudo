@@ -1448,7 +1448,7 @@ if (!defined('HAVE_PHP_SQL_PARSER')) {
 
         private function initParseInfoExprList($parseInfo = false) {
             if ($parseInfo === false) {
-                return array('processed' => false, 'expr' => "", 'key' => false, 'token' => false, 'tokenType' => "",
+                return array('processed' => false, 'expr' => [], 'key' => false, 'token' => false, 'tokenType' => "",
                              'prevToken' => "", 'prevTokenType' => "", 'trim' => false, 'upper' => false);
             }
 
