@@ -77,7 +77,7 @@ class Pdo extends \PDO
                 return $statement;
             }
         } else {
-
+            
         }
     }
 
@@ -126,10 +126,11 @@ class Pdo extends \PDO
 
     /**
      * @param ResultCollection $collection
+     * @param array            $options    Holds configuration for a result collection.
      */
-    public function __construct(ResultCollection $collection = null)
+    public function __construct(ResultCollection $collection = null, array $options = []) 
     {
-        $this->mockedQueries = $collection ?: new ResultCollection();
+        $this->mockedQueries = $collection ?: new ResultCollection($options);
         $this->queryLog = new QueryLog();
     }
 

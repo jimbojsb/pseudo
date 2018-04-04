@@ -162,4 +162,17 @@ class PdoTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($r, $queries);
         unlink('testsave');
     }
+    
+    public function testDebuggingRawQueries()
+    {
+        
+        $message = null;
+        $p = new Pseudo\Pdo(null, ['sqlDebug' => true]);
+        try {
+            $p->prepare('SELECT 123');
+        } catch (Exception $e) {
+            $message = $e->getMessage();
+        }
+        $this->assertRegExp('/SELECT 123/', $message);
+    }
 }

@@ -34,5 +34,11 @@ class ParsedQuery
         return $this->hash;
     }
 
-
+    /**
+     * @return string
+     */
+    public function getRawQuery()
+    {
+        return $this->rawQuery;
+    }
 }

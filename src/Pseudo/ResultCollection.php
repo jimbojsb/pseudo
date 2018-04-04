@@ -4,6 +4,23 @@ namespace Pseudo;
 class ResultCollection implements \Countable
 {
     private $queries = [];
+    /**
+     * Holds configuration settings for an object.
+     * Defining the field options:
+     * array['sqlDebug'] boolean Display the raw query alongside the un-mocked query exception (default `true`).
+     * @var array (See above)
+     */
+    private $options = [
+        'sqlDebug' => false
+    ];
+    
+    /**
+     * @param array $options Holds configuration, see the property description.
+     */
+    public function __construct(array $options = [])
+    {
+        $this->options = array_replace_recursive($this->options, $options);
+    }
 
     public function count()
     {
@@ -40,7 +57,11 @@ class ResultCollection implements \Countable
         if ($result instanceof Result) {
             return $result;
         } else {
-            throw new Exception("Attempting an operation on an un-mocked query is not allowed");
+            $message = "Attempting an operation on an un-mocked query is not allowed";
+            if ($this->options['sqlDebug']) {
+                $message .= ', the raw query: ' . $query->getRawQuery();
+            }
+            throw new Exception($message);
         }
     }
 }
