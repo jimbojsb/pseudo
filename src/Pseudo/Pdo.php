@@ -77,7 +77,7 @@ class Pdo extends \PDO
                 return $statement;
             }
         } else {
-
+            
         }
     }
 
@@ -127,7 +127,7 @@ class Pdo extends \PDO
     /**
      * @param ResultCollection $collection
      */
-    public function __construct(ResultCollection $collection = null)
+    public function __construct(ResultCollection $collection = null) 
     {
         $this->mockedQueries = $collection ?: new ResultCollection();
         $this->queryLog = new QueryLog();

@@ -4,7 +4,7 @@ namespace Pseudo;
 class ResultCollection implements \Countable
 {
     private $queries = [];
-
+    
     public function count()
     {
         return count($this->queries);
@@ -40,7 +40,9 @@ class ResultCollection implements \Countable
         if ($result instanceof Result) {
             return $result;
         } else {
-            throw new Exception("Attempting an operation on an un-mocked query is not allowed");
+            $message = "Attempting an operation on an un-mocked query is not allowed, the raw query: "
+                . $query->getRawQuery();
+            throw new Exception($message);
         }
     }
 }
