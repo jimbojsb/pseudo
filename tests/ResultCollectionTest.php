@@ -11,7 +11,7 @@ class ResultCollectionTest extends PHPUnit_Framework_TestCase
     public function testDebuggingRawQueries()
     {
         $message = null;
-        $r = new Pseudo\ResultCollection(['sqlDebug' => true]);
+        $r = new Pseudo\ResultCollection();
         try {
             $r->getResult('SELECT 123');
         } catch (Exception $e) {

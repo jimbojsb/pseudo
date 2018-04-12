@@ -167,7 +167,7 @@ class PdoTest extends PHPUnit_Framework_TestCase
     {
         
         $message = null;
-        $p = new Pseudo\Pdo(null, ['sqlDebug' => true]);
+        $p = new Pseudo\Pdo();
         try {
             $p->prepare('SELECT 123');
         } catch (Exception $e) {

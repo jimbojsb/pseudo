@@ -126,11 +126,10 @@ class Pdo extends \PDO
 
     /**
      * @param ResultCollection $collection
-     * @param array            $options    Holds configuration for a result collection.
      */
-    public function __construct(ResultCollection $collection = null, array $options = []) 
+    public function __construct(ResultCollection $collection = null) 
     {
-        $this->mockedQueries = $collection ?: new ResultCollection($options);
+        $this->mockedQueries = $collection ?: new ResultCollection();
         $this->queryLog = new QueryLog();
     }
 
