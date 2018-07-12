@@ -47,7 +47,11 @@ class Result
         if ($this->params !== null && empty($params)) $params = $this->params;
         if ($params) {
             if ($this->isParameterized) {
-                return $this->rows[$this->stringifyParameterSet($params)];
+                if(isset($this->rows[$this->stringifyParameterSet($params)])) {
+                    return $this->rows[$this->stringifyParameterSet($params)];
+                } else {
+                    return [];
+                }
             }
             throw new Exception("Cannot get rows with parameters on a non-parameterized result");
         } else {
