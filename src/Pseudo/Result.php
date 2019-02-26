@@ -12,24 +12,31 @@ class Result
     private $rowOffset = 0;
     private $params = null;
 
-    public function __construct($rows = null)
+    public function __construct($rows = null, $params = null)
     {
         if (is_array($rows)) {
-            $this->rows = $rows;
+            if($params) {
+                $this->rows[$this->stringifyParameterSet($params)] = $rows;
+                $this->isParameterized = true;
+            } else {
+                $this->rows = $rows;
+            }
         }
     }
 
     public function addRow(array $row, $params = null)
     {
         if ($params) {
-            if ($this->isParameterized) {
+            if ($this->isParameterized && !empty($row)) {
                 $this->rows[$this->stringifyParameterSet($params)][] = $row;
             } else if (!$this->isParameterized && !$this->rows) {
-                $this->rows[$this->stringifyParameterSet($params)][] = $row;
+                if(!empty($row)) {
+                    $this->rows[$this->stringifyParameterSet($params)][] = $row;
+                }
                 $this->isParameterized = true;
             }
         } else {
-            if (!$this->isParameterized) {
+            if (!$this->isParameterized && !empty($row)) {
                 $this->rows[] = $row;
             } else {
                 throw new Exception("Cannot mix parameterized and non-parameterized rowsets");
@@ -37,9 +44,12 @@ class Result
         }
     }
 
-    public function setParams($params)
+    public function setParams($params, $parameterize = null)
     {
         $this->params = $params;
+        if($parameterize) {
+            $this->isParameterized = true;
+        }
     }
 
     public function getRows(array $params = [])

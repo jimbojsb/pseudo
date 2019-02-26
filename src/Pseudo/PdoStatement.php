@@ -12,12 +12,32 @@ class PdoStatement extends \PDOStatement
     private $boundParams = [];
     private $boundColumns = [];
 
-    public function __construct($result = null)
+    /**
+     * @var QueryLog
+     */
+    private $queryLog;
+
+    /**
+     * @var string
+     */
+    private $statement;
+
+    /**
+     * @param Querylog $queryLog
+     * @param string $statement
+     * @param Result|null $result
+     */
+    public function __construct($result = null, QueryLog $queryLog = null, $statement = null)
     {
         if (!($result instanceof Result)) {
             $result = new Result();
         }
-        $this->result = $result;;
+        $this->result = $result;
+        if (!($queryLog instanceof QueryLog)) {
+            $queryLog = new QueryLog();
+        }
+        $this->queryLog = $queryLog;
+        $this->statement = $statement;
     }
 
     public function setResult(Result $result)
@@ -25,7 +45,7 @@ class PdoStatement extends \PDOStatement
         $this->result = $result;
     }
 
-	/**
+    /**
      * @param array|null $input_parameters
      * @return bool
      */
@@ -33,8 +53,9 @@ class PdoStatement extends \PDOStatement
     {
         $input_parameters = array_merge((array)$input_parameters, $this->boundParams);
         try {
-            $this->result->setParams($input_parameters);
+            $this->result->setParams($input_parameters, !empty($this->boundParams));
             $success = (bool) $this->result->getRows($input_parameters ?: []);
+            $this->queryLog->addQuery($this->statement);
             return $success;
         } catch (Exception $e) {
             return false;
@@ -86,7 +107,7 @@ class PdoStatement extends \PDOStatement
 
     public function fetchAll($fetch_style = \PDO::FETCH_BOTH, $fetch_argument = null, $ctor_args = 'array()')
     {
-        $rows = $this->result->getRows();
+        $rows = $this->result->getRows() ?: [];
         $returnArray = [];
         foreach ($rows as $row) {
             $returnArray[] = $this->proccessFetchedRow($row, $fetch_style);
