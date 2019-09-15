@@ -35,9 +35,9 @@ class QueryLog implements \IteratorAggregate, \ArrayAccess, \Countable
         unset($this->queries[$offset]);
     }
 
-    public function addQuery($sql)
+    public function addQuery($sql, $params = null)
     {
-        $this->queries[] = new ParsedQuery($sql);
+        $this->queries[] = new ParsedQuery($sql, $params);
     }
 
     public function getQueries()

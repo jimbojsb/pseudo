@@ -11,6 +11,17 @@ class ParsedQueryTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($hashed, $q->getHash());
     }
 
+    public function testQueryHashingWithParams()
+    {
+        $sql = "SELECT foo FROM bar WHERE baz = ?";
+        $params = ["foo"];
+        $q = new \Pseudo\ParsedQuery($sql, $params);
+        $p = new \PHPSQLParser();
+        $parsed = $p->parse($sql);
+        $hashed = sha1(serialize($parsed) . serialize($params));
+        $this->assertEquals($hashed, $q->getHash());
+    }
+
     public function testIsEquals()
     {
         $sql = "SELECT foo FROM bar WHERE baz";

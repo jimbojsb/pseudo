@@ -4,7 +4,7 @@ namespace Pseudo;
 class ResultCollection implements \Countable
 {
     private $queries = [];
-    
+
     public function count()
     {
         return count($this->queries);
@@ -12,7 +12,7 @@ class ResultCollection implements \Countable
 
     public function addQuery($sql, $results, $params = null)
     {
-        $query = new ParsedQuery($sql);
+        $query = new ParsedQuery($sql, $params);
 
         if (is_array($results)) {
             $storedResults = new Result($results, $params);
@@ -25,16 +25,16 @@ class ResultCollection implements \Countable
         $this->queries[$query->getHash()] = $storedResults;
     }
 
-    public function exists($sql)
+    public function exists($sql, $params = null)
     {
-        $query = new ParsedQuery($sql);
+        $query = new ParsedQuery($sql, $params);
         return isset($this->queries[$query->getHash()]);
     }
 
-    public function getResult($query)
+    public function getResult($query, $params = null)
     {
         if (!($query instanceof ParsedQuery)) {
-            $query = new ParsedQuery($query);
+            $query = new ParsedQuery($query, $params);
         }
         $result = (isset($this->queries[$query->getHash()])) ? $this->queries[$query->getHash()] : null;
         if ($result instanceof Result) {

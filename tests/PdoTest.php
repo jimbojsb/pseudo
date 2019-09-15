@@ -34,7 +34,7 @@ class PdoTest extends PHPUnit_Framework_TestCase
         $p->mock($sql3, $result1, $params3);
         $p->mock($sql3, $result2, $params4);
 
-        $this->assertEquals(3, count($p->getMockedQueries()));
+        $this->assertEquals(4, count($p->getMockedQueries()));
 
 
     }
@@ -174,13 +174,14 @@ class PdoTest extends PHPUnit_Framework_TestCase
         $this->assertEquals($r, $queries);
         unlink('testsave');
     }
-    
+
     public function testDebuggingRawQueries()
     {
         $message = null;
         $p = new Pseudo\Pdo();
         try {
-            $p->prepare('SELECT 123');
+            $sth = $p->prepare('SELECT 123');
+            $sth->execute();
         } catch (Exception $e) {
             $message = $e->getMessage();
         }
