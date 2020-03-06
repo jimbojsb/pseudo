@@ -221,7 +221,7 @@ if (!defined('HAVE_PHP_SQL_PARSER')) {
     /**
      * This class splits the SQL string into little parts, which the parser can
      * use to build the result array.
-     * 
+     *
      * @author arothe
      *
      */
@@ -320,7 +320,7 @@ if (!defined('HAVE_PHP_SQL_PARSER')) {
         /*
          * does the token ends with dot?
          * concat it with the next token
-         * 
+         *
          * does the token starts with a dot?
          * concat it with the previous token
          */
@@ -962,7 +962,7 @@ if (!defined('HAVE_PHP_SQL_PARSER')) {
         private function process_limit($tokens) {
             $rowcount = "";
             $offset = "";
-            
+
             $comma = -1;
             $exchange = false;
 
@@ -994,14 +994,14 @@ if (!defined('HAVE_PHP_SQL_PARSER')) {
                     $rowcount .= $tokens[$i];
                 }
             }
-            
+
             return array('offset' => trim($offset), 'rowcount' => trim($rowcount));
         }
 
         /* This function processes the SELECT section.  It splits the clauses at the commas.
          Each clause is then processed by process_select_expr() and the results are added to
          the expression list.
-        
+
          Finally, at the end, the epxression list is returned.
          */
         private function process_select(&$tokens) {
@@ -1555,7 +1555,7 @@ if (!defined('HAVE_PHP_SQL_PARSER')) {
                         # last token is colref, const or expression
                         # it is an operator, in all other cases it is an all-columns-alias
                         # if the previous colref ends with a dot, the * is the all-columns-alias
-                        if (!is_array($parseInfo['expr'])) {
+                        if (!$parseInfo['expr'] || !is_array($parseInfo['expr'])) {
                             $parseInfo['tokenType'] = "colref"; # single or first element of select -> *
                             break;
                         }
@@ -1826,12 +1826,12 @@ if (!defined('HAVE_PHP_SQL_PARSER')) {
     }
 
     /**
-     * 
-     * This class calculates the positions 
+     *
+     * This class calculates the positions
      * of base_expr within the origina SQL statement.
-     * 
+     *
      * @author arothe
-     * 
+     *
      */
     class PositionCalculator extends PHPSQLParserUtils {
 
