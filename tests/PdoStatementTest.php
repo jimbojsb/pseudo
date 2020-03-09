@@ -87,7 +87,8 @@ class PdoStatementTest extends PHPUnit_Framework_TestCase
     {
         $r = new Pseudo\Result();
         $r->setErrorCode("HY000");
-        $p = new Pseudo\PdoStatement($r);
+        $p = new Pseudo\PdoStatement();
+        $p->setResult($r);
         $this->assertEquals("HY000", $p->errorCode());
     }
 
@@ -95,7 +96,8 @@ class PdoStatementTest extends PHPUnit_Framework_TestCase
     {
         $r = new Pseudo\Result();
         $r->setErrorInfo("Storage engine error");
-        $p = new Pseudo\PdoStatement($r);
+        $p = new Pseudo\PdoStatement();
+        $p->setResult($r);
         $this->assertEquals("Storage engine error", $p->errorInfo());
     }
 
@@ -108,7 +110,8 @@ class PdoStatementTest extends PHPUnit_Framework_TestCase
                 'foo' => 'bar'
             ]
         );
-        $p = new Pseudo\PdoStatement($r);
+        $p = new Pseudo\PdoStatement();
+        $p->setResult($r);
         $this->assertEquals(2, $p->columnCount());
     }
 
@@ -133,7 +136,8 @@ class PdoStatementTest extends PHPUnit_Framework_TestCase
         ];
 
         $r = new Pseudo\Result();
-        $p = new Pseudo\PdoStatement($r);
+        $p = new Pseudo\PdoStatement();
+        $p->setResult($r);
 
         $data = $p->fetch();
         $this->assertEquals(false, $data);
@@ -161,7 +165,8 @@ class PdoStatementTest extends PHPUnit_Framework_TestCase
         ];
 
         $r = new Pseudo\Result();
-        $p = new Pseudo\PdoStatement($r);
+        $p = new Pseudo\PdoStatement();
+        $p->setResult($r);
 
         $r->addRow($row1);
         $r->addRow($row2);
@@ -179,14 +184,16 @@ class PdoStatementTest extends PHPUnit_Framework_TestCase
         ];
         $r = new Pseudo\Result();
         $r->addRow($row1);
-        $p = new Pseudo\PdoStatement($r);
+        $p = new Pseudo\PdoStatement();
+        $p->setResult($r);
         $p->bindColumn(2, $test);
         $p->fetch(PDO::FETCH_BOUND);
         $this->assertEquals('bar', $test);
         unset($test);
 
         $r->reset();
-        $p = new Pseudo\PdoStatement($r);
+        $p = new Pseudo\PdoStatement();
+        $p->setResult($r);
         $p->bindColumn('foo', $test);
         $p->fetch(PDO::FETCH_BOUND);
         $this->assertEquals('bar', $test);
@@ -202,7 +209,8 @@ class PdoStatementTest extends PHPUnit_Framework_TestCase
         $testObject = (object) $row1;
         $r = new Pseudo\Result();
         $r->addRow($row1);
-        $s = new Pseudo\PdoStatement($r);
+        $s = new Pseudo\PdoStatement();
+        $s->setResult($r);
         $this->assertEquals($testObject, $s->fetchObject());
     }
 
@@ -216,13 +224,58 @@ class PdoStatementTest extends PHPUnit_Framework_TestCase
             'bar'
         ];
 
+        $p = new Pseudo\Pdo();
+        $p->mock('SELECT * FROM test where foo = ?', $row1, $params1);
+        $queries = $p->getMockedQueries();
+
         $r = new Pseudo\Result();
         $r->addRow($row1, $params1);
         $queryLog = new Pseudo\QueryLog();
-        $s = new Pseudo\PdoStatement($r, $queryLog, 'SELECT * FROM test');
+        $s = new Pseudo\PdoStatement($queries, $queryLog, 'SELECT * FROM test where foo = ?');
 
         $this->assertEquals(true, $s->execute($params1));
-        $this->assertEquals(false, $s->execute());
+
+        // this should no longer just return since we're now mocking with params
+        $caughtException = false;
+        try {
+          $this->assertEquals(false, $s->execute());
+        } catch(\Exception $e) {
+          $this->assertEquals('Attempting an operation on an un-mocked query is not allowed, the raw query: SELECT * FROM test where foo = ?', $e->getMessage());
+          $caughtException = true;
+        }
+        $this->assertTrue($caughtException);
+    }
+
+    public function testExecuteWithSameQueryDifferentParams()
+    {
+        $row1 = [
+          'id' => 1,
+          'foo' => 'bar',
+        ];
+        $params1 = [
+          'bar'
+        ];
+
+        $row2 = [
+          'id' => 2,
+          'foo' => 'bar2',
+        ];
+        $params2 = [
+          'bar2'
+        ];
+
+        $p = new Pseudo\Pdo();
+        $p->mock('SELECT * FROM test where foo = ?', $row1, $params1);
+        $p->mock('SELECT * FROM test where foo = ?', $row2, $params2);
+        $queries = $p->getMockedQueries();
+
+        $r = new Pseudo\Result();
+        $r->addRow($row1, $params1);
+        $queryLog = new Pseudo\QueryLog();
+        $s = new Pseudo\PdoStatement($queries, $queryLog, 'SELECT * FROM test where foo = ?');
+
+        $this->assertEquals(true, $s->execute($params1));
+        $this->assertEquals(true, $s->execute($params2));
     }
 
     public function testBindParam()
@@ -252,7 +305,8 @@ class PdoStatementTest extends PHPUnit_Framework_TestCase
 
         $r = new Pseudo\Result();
         $r->addRow($row1);
-        $s = new Pseudo\PdoStatement($r);
+        $s = new Pseudo\PdoStatement();
+        $s->setResult($r);
 
         $this->assertEquals('bar', $s->fetchColumn(1));
         $this->assertEquals(false, $s->fetchColumn(0));

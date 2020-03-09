@@ -7,6 +7,7 @@ class PdoStatement extends \PDOStatement
     /**
      * @var Result;
      */
+    private $mockedQueries;
     private $result;
     private $fetchMode = \PDO::FETCH_BOTH; //DEFAULT FETCHMODE
     private $boundParams = [];
@@ -27,12 +28,9 @@ class PdoStatement extends \PDOStatement
      * @param string $statement
      * @param Result|null $result
      */
-    public function __construct($result = null, QueryLog $queryLog = null, $statement = null)
+    public function __construct($mockedQueries = null, QueryLog $queryLog = null, $statement = null)
     {
-        if (!($result instanceof Result)) {
-            $result = new Result();
-        }
-        $this->result = $result;
+        $this->mockedQueries = $mockedQueries;
         if (!($queryLog instanceof QueryLog)) {
             $queryLog = new QueryLog();
         }
@@ -52,6 +50,7 @@ class PdoStatement extends \PDOStatement
     public function execute($input_parameters = null)
     {
         $input_parameters = array_merge((array)$input_parameters, $this->boundParams);
+        $this->result = $this->mockedQueries->getResult($this->statement, $input_parameters);
         try {
             $this->result->setParams($input_parameters, !empty($this->boundParams));
             $success = (bool) $this->result->getRows($input_parameters ?: []);
@@ -62,7 +61,7 @@ class PdoStatement extends \PDOStatement
         }
     }
 
-    public function fetch($fetch_style = null, $cursor_orientation = PDO::FETCH_ORI_NEXT, $cursor_offset = 0)
+    public function fetch($fetch_style = null, $cursor_orientation = \PDO::FETCH_ORI_NEXT, $cursor_offset = 0)
     {
         // scrolling cursors not implemented
         $row = $this->result->nextRow();
