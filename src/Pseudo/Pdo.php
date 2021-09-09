@@ -62,15 +62,17 @@ class Pdo extends \PDO
     }
 
     /**
-     * @param string $statement
+     * @param string $query
+     * @param int|null $fetchMode
+     * @param mixed ...$fetchModeArgs
      * @return PdoStatement
      */
-    public function query($statement)
+    public function query(string $query, ?int $fetchMode = null, mixed ...$fetchModeArgs)
     {
-        if ($this->mockedQueries->exists($statement)) {
-            $result = $this->mockedQueries->getResult($statement);
+        if ($this->mockedQueries->exists($query)) {
+            $result = $this->mockedQueries->getResult($query);
             if ($result) {
-                $this->queryLog->addQuery($statement);
+                $this->queryLog->addQuery($query);
                 $statement = new PdoStatement();
                 $statement->setResult($result);
                 return $statement;
