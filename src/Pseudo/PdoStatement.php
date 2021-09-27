@@ -105,19 +105,19 @@ class PdoStatement extends \PDOStatement
         return false;
     }
 
-    public function fetchAll($fetch_style = \PDO::FETCH_BOTH, $fetch_argument = null, $ctor_args = 'array()')
+    public function fetchAll(int $mode = PDO::FETCH_DEFAULT, mixed ...$args)
     {
         $rows = $this->result->getRows() ?: [];
         $returnArray = [];
         foreach ($rows as $row) {
-            $returnArray[] = $this->proccessFetchedRow($row, $fetch_style);
+            $returnArray[] = $this->proccessFetchedRow($row, $mode);
         }
         return $returnArray;
     }
 
     private function proccessFetchedRow($row, $fetchMode)
     {
-		$i = 0;
+        $i = 0;
         switch ($fetchMode ?: $this->fetchMode) {
             case \PDO::FETCH_BOTH:
                 $returnRow = [];
@@ -206,10 +206,10 @@ class PdoStatement extends \PDOStatement
 
     /**
      * @param int $mode
-     * @param array|null $params
+     * @param mixed ...$args
      * @return bool|int
      */
-    public function setFetchMode($mode, $params = null)
+    public function setFetchMode(int $mode, mixed ...$args)
     {
         $r = new \ReflectionClass(new Pdo());
         $constants = $r->getConstants();
